@@ -102,9 +102,11 @@ class TeacherController extends Controller
 
         }
 
-        public function destroy($id){
+        public function destroy(Request $request){
+            $id=$request->id;
 
             $teacher=Teacher::find($id);
+
 
 
             $photo=public_path('images/teacher/'.$teacher->photopath);

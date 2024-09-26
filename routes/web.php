@@ -17,13 +17,15 @@ Route::get('/', [PagesController::class,'home'])->name('home');
 Route::get('/about', [PagesController::class,'about'])->name('about');
 
 
+Route::middleware(['auth'])->group(function () {
+
 //Teacher
 Route::get('/teacher',[TeacherController::class,'index'])->name('teacher.index');
 Route::get('/teacher/create',[TeacherController::class,'create'])->name('teacher.create');
 Route::post('/teacher/store',[TeacherController::class,'store'])->name('teacher.store');
 Route::get('/teacher/edit/{id}',[TeacherController::class,'edit'])->name('teacher.edit');
 Route::post('/teacher/update/{id}',[TeacherController::class,'update'])->name('teacher.update');
-Route::get('/teacher/destroy/{id}',[TeacherController::class,'destroy'])->name('teacher.destroy');
+Route::delete('/teacher/destroy/',[TeacherController::class,'destroy'])->name('teacher.destroy');
 
 
 //Student
@@ -32,7 +34,7 @@ Route::get('/student/create',[StudentController::class,'create'])->name('student
 Route::post('/student/store',[StudentController::class,'store'])->name('student.store');
 Route::get('/student/edit/{id}',[StudentController::class,'edit'])->name('student.edit');
 Route::post('/student/update/{id}',[StudentController::class,'update'])->name('student.update');
-Route::get('/student/destroy/{id}',[StudentController::class,'destroy'])->name('student.destroy');
+Route::delete('/student/destroy/',[StudentController::class,'destroy'])->name('student.destroy');
 
 // SchoolClass
 Route::get('/schoolclass',[SchoolClassController::class,'index'])->name('schoolclass.index');
@@ -40,7 +42,7 @@ Route::get('/schoolclass/create',[SchoolClassController::class,'create'])->name(
 Route::post('/schoolclass/store',[SchoolClassController::class,'store'])->name('schoolclass.store');
 Route::get('/schoolclass/edit/{id}',[SchoolClassController::class,'edit'])->name('schoolclass.edit');
 Route::post('/schoolclass/update/{id}',[SchoolClassController::class,'update'])->name('schoolclass.update');
-Route::get('/schoolclass/destroy/{id}',[SchoolClassController::class,'destroy'])->name('schoolclass.destroy');
+Route::delete('/schoolclass/destroy/',[SchoolClassController::class,'destroy'])->name('schoolclass.destroy');
 
 
 //Exam Typ
@@ -65,32 +67,10 @@ Route::get('/schoolnotice/create',[SchoolNoticeController::class,'create'])->nam
 Route::post('/schoolnotice/store',[SchoolNoticeController::class,'store'])->name('schoolnotice.store');
 Route::get('/schoolnotice/edit/{id}',[SchoolNoticeController::class,'edit'])->name('schoolnotice.edit');
 Route::post('/schoolnotice/update/{id}',[SchoolNoticeController::class,'update'])->name('schoolnotice.update');
-Route::get('/schoolnotice/destroy/{id}',[SchoolNoticeController::class,'destroy'])->name('schoolnotice.destroy');
+Route::delete('/schoolnotice/destroy/',[SchoolNoticeController::class,'destroy'])->name('schoolnotice.destroy');
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+});
 
 
 

@@ -109,7 +109,8 @@ public function edit($id){
 
         }
 
-        public function destroy($id){
+        public function destroy(Request $request){
+            $id=$request->id;
             $student=student::find($id);
             $photo=public_path('images/student/'.$student->photopath);
 

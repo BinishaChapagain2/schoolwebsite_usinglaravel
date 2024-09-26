@@ -64,7 +64,8 @@ class SchoolClassController extends Controller
 
          }
 
-         public function destroy($id){
+         public function destroy(Request $request){
+            $id=$request->id;
 
              $schoolclass=schoolclass::find($id);
              $teachers=teacher::where('schoolclass_id',$id)->count();

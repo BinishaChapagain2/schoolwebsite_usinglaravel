@@ -89,7 +89,8 @@ public function edit($id){
 
         }
 
-        public function destroy($id){
+        public function destroy(Request $request){
+            $id=$request->id;
             $schoolnotice=schoolnotice::find($id);
             $photo=public_path('images/schoolnotice/'.$schoolnotice->photopath);
 

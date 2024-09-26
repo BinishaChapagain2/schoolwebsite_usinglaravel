@@ -82,11 +82,70 @@
                 </div>
 
                 <!-- Login for large devices -->
-                <div class="hidden lg:flex lg:items-center lg:space-x-4 relative">
-                    <a href="#" class="text-white hover:text-gray-300 px-3 bg-blue-700 py-2 rounded-md text-sm lg:text-base font-medium">Login</a>
+                <!-- Book Now and User Profile (Desktop) -->
+                <div class="hidden lg:flex lg:items-center lg:space-x-4">
 
+                    @auth
+
+                        <div class="relative group">
+                            <!-- Profile Picture -->
+                            <img class="w-8 h-8 rounded-full cursor-pointer" src="{{asset('images/student/1726507728.jpg')}}"
+                                alt="User Profile">
+
+                            <!-- Dropdown Menu -->
+                            <div
+                                class="absolute right-0 hidden w-48 p-2 transition-all duration-300 ease-in-out transform bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 top-6 group-hover:block group-hover:opacity-100 group-hover:translate-y-2 animate__animated animate__bounceIn">
+
+                                {{-- my booking --}}
+                                <a href=""
+                                    class="flex items-center gap-2 p-2 text-gray-700 transition-colors duration-300 ease-in-out rounded-lg hover:bg-blue-50 hover:text-blue-600">
+                                    <i class='text-xl bx bx-calendar-event'></i>
+                                    <span>My Appointment</span>
+                                </a>
+
+                                <!-- My Chart -->
+                                <a href=""
+                                    class="flex items-center gap-2 p-2 text-gray-700 transition-colors duration-300 ease-in-out rounded-lg hover:bg-blue-50 hover:text-blue-600">
+                                    <i class='text-xl bx bx-cart-add'></i>
+                                    <span>My Cart</span>
+                                </a>
+
+                                <!-- My Order -->
+                                <a href=""
+                                    class="flex items-center gap-2 p-2 text-gray-700 transition-colors duration-300 ease-in-out rounded-lg hover:bg-blue-50 hover:text-blue-600">
+                                    <i class='text-xl bx bx-shopping-bag'></i>
+                                    <span>My Order</span>
+                                </a>
+
+                                <!-- My Profile -->
+                                <a href=""
+                                    class="flex items-center gap-2 p-2 text-gray-700 transition-colors duration-300 ease-in-out rounded-lg hover:bg-blue-50 hover:text-blue-600">
+                                    <i class='text-xl bx bx-user'></i>
+                                    <span>My Profile</span>
+                                </a>
+
+                                <!-- Logout -->
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button
+                                        class="flex items-center w-full gap-2 p-2 text-left text-gray-700 transition-colors duration-300 ease-in-out rounded-lg hover:bg-red-50 hover:text-red-600">
+                                        <i class='text-xl bx bx-log-out'></i>
+                                        <span>Logout</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Login Button for Guests -->
+                    @else
+                        <a href="{{ route('login') }}"
+                            class="block px-4 py-2 ml-2 text-lg font-medium text-[#051923] transition-all duration-300 bg-white rounded-md hover:bg-[#0f232d] hover:text-white">
+                            Login
+                        </a>
+                    @endauth
 
                 </div>
+
 
                 <!-- Mobile and Tablet Menu button (visible on sm and md screens) -->
                 <div class="flex lg:hidden items-center">
@@ -155,16 +214,38 @@
             </div>
 
             <!-- Mobile Login Dropdown -->
-            <div class="px-2 pt-4 pb-3 space-y-1">
-                <a href="#" id="mobile-login-button" class="bg-white hover:bg-blue-600 hover:text-white text-gray-900 px-4 py-2 rounded text-sm font-medium">
-                    Login
-                </a>
-                <div id="mobile-login-dropdown" class="mt-1 w-27 absolute left-24 top-96 bg-blue-900 text-white rounded-md shadow-lg hidden animate__animated animate__zoomIn">
-                    <a href="/adminlogin" class="block px-4 py-2 text-sm">Admin</a>
-                    <a href="/teacherlogin" class="block px-4 py-2 text-sm">Teacher</a>
-                    <a href="/studentlogin" class="block px-4 py-2 text-sm">Student</a>
-                </div>
+            <div class="flex items-center justify-between w-full px-5 py-2 ">
+
+                @auth
+
+                    <div class="relative group">
+                        <img class="w-8 h-8 rounded-full" src="{{ asset('images/student/1726507824.jpg') }}"
+                            alt="User Profile">
+                        <div
+                            class="absolute hidden w-48 p-2 bg-gray-100 border rounded shadow left-10 -top-12 group-hover:block">
+                            <a href="" class="block p-4 py-2 hover:bg-gray-200">
+                                <i class='bx bx-bar-chart-alt'></i> My Chart
+                            </a>
+                            <a href="" class="block p-4 py-2 hover:bg-gray-200">
+                                <i class='bx bx-shopping-bag'></i> My Order
+                            </a>
+                            <a href="" class="block p-4 py-2 hover:bg-gray-200">
+                                <i class='bx bx-user'></i> My Profile
+                            </a>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button class="block w-full p-4 py-2 text-left rounded-md hover:bg-gray-200">
+                                    <i class='bx bx-log-out'></i> Logout
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @else
+                    <a href="{{ route('login') }}"
+                        class="block p-3 py-2 -ml-1 text-base font-medium text-[#0f232d] bg-white rounded-md">Login</a>
+                @endauth
             </div>
+
         </div>
     </nav>
 
